@@ -6,8 +6,11 @@ var makeDancer = function(top, left, timeBetweenSteps) {
 };
 
 makeDancer.prototype.step = function() {
-  // the basic dancer doesn't do anything interesting at all on each step,
-  // it just schedules the next step
+  // schedule the next step
+  // whatever instance calls .step(), make sure that the this value gets binded
+  // remember, setTimeout takes in a function as its first argument
+  // without a this value that is passed in, it becomes a free function invocation
+  // with its this value set to Window
   setTimeout(this.step.bind(this), this.timeBetweenSteps);
 };
 
